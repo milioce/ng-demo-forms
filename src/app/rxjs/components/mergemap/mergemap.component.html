@@ -1,0 +1,19 @@
+<div class="card bg-light mb-3">
+  <h1 class="card-header bg-secondary">MergeMap</h1>
+  <div class="card-body">
+    <h4 class="card-title">source$.mergeMap(res => inner$).subscribe()</h4>
+    <p class="card-text">
+      Cada valor emitido por source, se aplica una función que devuelve un observable
+      <br> y mezcla el resultado de todos los observables en un único observable.
+    </p>
+    <p class="card-text">
+      Primero emite todos los valores del source. Luego todos los valores de cada observable.
+    </p>
+  </div>
+</div>
+
+<rxjs-card-code title="Ejemplo 1" [code]="code1"
+  (run)="onTest1()"></rxjs-card-code>
+
+<rxjs-card-code title="Ejemplo 2" [code]="code2"
+  (run)="onTest2()"></rxjs-card-code>

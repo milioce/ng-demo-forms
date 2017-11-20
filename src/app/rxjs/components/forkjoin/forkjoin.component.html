@@ -1,0 +1,16 @@
+<div class="card bg-light mb-3">
+  <h1 class="card-header bg-secondary">forkJoin</h1>
+  <div class="card-body">
+    <h4 class="card-title">Rx.Observable.forJoin(...args, [resultSelector])</h4>
+    <p class="card-text">
+      Ejecuta los observables en paralelo y emite los ultimos valores. Si no hay segundo argumento, devuelve un array con los ultimos
+      valores.
+    </p>
+    <p class="card-text">
+      El segundo argumento es una funcion que recibe todos los resultados y devuelve un valor
+    </p>
+  </div>
+</div>
+
+<rxjs-card-code title="Ejemplo 1" [code]="code"
+  (run)="onTest1()"></rxjs-card-code>

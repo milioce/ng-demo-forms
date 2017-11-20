@@ -1,0 +1,43 @@
+ <div class="row">
+    <nav class="col-sm-3 col-md-2 d-sm-block bg-light sidebar">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a class="nav-link" 
+                   routerLink="concat" 
+                   routerLinkActive="active">concat</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="forkjoin">forkJoin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="mergemap">mergeMap</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="pairwise">pairwise</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="switchmap">switchMap</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="combinelatest">combineLatest</a>
+            </li>
+        </ul>
+    </nav>
+    <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+        <router-outlet></router-outlet>
+    </main>
+</div>
+
+<!--
+  interval
+  timer
+  do
+  of
+  from
+  filter
+  map
+
+  source$.startWith(...values) Emite valores antes de empezar a emitir valores source$
+
+  https://netbasal.com/rxjs-six-operators-that-you-must-know-5ed3b6e238a0
+-->
