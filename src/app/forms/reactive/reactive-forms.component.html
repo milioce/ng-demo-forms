@@ -1,8 +1,20 @@
 <h1>Reactive form</h1>
-<form novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input formControlName="username" id="username" type="text" class="form-control">
+<form autocomplete="off" novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div formGroupName="name">
+    <div class="form-group">
+      <label for="firstname">First name</label>
+      <input formControlName="first" id="firstname" type="text" class="form-control">
+      <span *ngIf="first.invalid && first.touched && first.errors['required']" class="error">
+        The firstname is required
+      </span>
+      <span *ngIf="first.invalid && first.touched && first.errors['minlength']" class="error">
+          The firstname must have at least {{ first.errors['minlength'].requiredLength }} characters
+        </span>
+      </div>
+    <div class="form-group">
+      <label for="lastname">Last name</label>
+      <input formControlName="last" id="lastname" type="text" class="form-control">
+    </div>
   </div>
   <div class="form-group">
     <label for="email">Email</label>
@@ -11,18 +23,38 @@
   <div class="form-group">
     <label for="country">Country</label>
     <select formControlName="country" id="country" class="form-control">
-      <option *ngFor="let opt of countries"
-              [ngValue]="opt">{{ opt.label }}</option>
+      <option *ngFor="let opt of countries" [ngValue]="opt">{{ opt.label }}</option>
     </select>
   </div>
-  <button type="submit">Save</button>
+  <div class="form-group">
+    <label for="email">Username</label>
+    <input formControlName="username" id="username" type="text" class="form-control">
+    <span class="error" *ngIf="username.pending && username.dirty">wait...</span>
+    <span class="error" *ngIf="username.invalid && username.touched">
+      <ng-container *ngIf="username.errors['required']">The username is required</ng-container>
+      <ng-container *ngIf="username.errors['nameIsForbidden']">The username is forbidden</ng-container>
+      <ng-container *ngIf="username.errors['emailAlreadyExists']">The username already exists</ng-container>
+    </span>
+  </div>
+
+  <app-mycontrol [options]="options" label="My custom control" formControlName="mycontrol"></app-mycontrol>
+
+  <div formArrayName="languages">
+    <h3>Your languages</h3>
+    <button class="btn btn-secondary btn-sm mb-2" type="button" (click)="onAddLanguage()">Add language</button>
+    <div class="form-group" *ngFor="let control of languages.controls; let i = index">
+      <input type="text" class="form-control" [formControlName]="i">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
 </form>
 
-<ul>
-  <li *ngFor="let country of countries">{{ country.id }}</li>
-</ul>
-
-<div *ngIf="form.valid">
-  <hr>
-  {{ form.value | json }}
+<div class="row mt-2">
+  <div class="col-6">
+    <p>
+      <button type="button" class="btn btn-info btn-sm" (click)="onSetPatch()">Set patch</button>
+      <button type="button" class="btn btn-info btn-sm" (click)="onSetValue()">Set value</button>
+    </p>
+  </div>
 </div>
+
