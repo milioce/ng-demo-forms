@@ -6,7 +6,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   template: `
   <div class="form-group">
     <label>{{ label }}</label>
-    <select noNgModel name="mySelect" (change)="onChangeSelect($event.target.value)" class="form-control">
+    <select noNgModel name="mySelect"
+      (change)="onChange($event.target.value)"
+      (blur)="onTouched()"
+      [disabled]="disabled"
+      class="form-control">
       <option value="">Select an option</option>
       <option *ngFor="let option of options" [value]="option.value" [selected]="defaultOption == option.value">{{ option.text }}</option>
     </select>
@@ -25,6 +29,7 @@ export class MyControlComponent implements ControlValueAccessor {
   @Input() label: string;
 
   defaultOption: string = null;
+  disabled = false;
   onChange = (_: any) => {};
   onTouched = () => {};
 
@@ -43,10 +48,7 @@ export class MyControlComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-
+    this.disabled = isDisabled;
   }
 
-  onChangeSelect(value: string) {
-    this.onChange(value);
-  }
 }
