@@ -5,6 +5,7 @@ import { DemoFormsComponent } from './demoforms.component';
 import { TemplateFormsComponent } from './template/template-forms.component';
 import { ReactiveFormsComponent } from './reactive/reactive-forms.component';
 import { MyControlComponent } from './reactive/mycontrol.component';
+import { ListComponent } from './reactive/list.component';
 
 const routes: Routes = [
   { path: '', component: DemoFormsComponent, children: [
@@ -23,6 +24,7 @@ export const DemoFormsComponents = [
   DemoFormsComponent,
   TemplateFormsComponent,
   ReactiveFormsComponent,
-  MyControlComponent
+  MyControlComponent,
+  ListComponent
 ];
 
