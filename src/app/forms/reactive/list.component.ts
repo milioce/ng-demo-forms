@@ -4,14 +4,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
   selector: 'app-list',
   template: `
-  <div class="form-group">
-    <label>Select an option</label>
-    <div class="list-group col-md-5">
-      <a *ngFor="let option of options"
-         class="list-group-item list-group-item-action"
-         [ngClass]="{active: defaultOption == option.value, disable: disabled}"
-         (click)="onClick(option.value)">{{ option.text }}</a>
-    </div>
+  <label *ngIf="label">Select an option</label>
+  <div class="list-group col-md-5">
+    <a *ngFor="let option of options"
+        class="list-group-item list-group-item-action"
+        [ngClass]="{active: defaultOption == option.value, disable: disabled}"
+        (click)="onClick(option.value)">{{ option.text }}</a>
   </div>
   `,
   providers: [{
@@ -20,7 +18,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       multi: true,
   }]
 })
-
 export class ListComponent implements ControlValueAccessor {
   @Input() options: {value: any, text: string}[];
   @Input() label: string;
@@ -49,8 +46,13 @@ export class ListComponent implements ControlValueAccessor {
   }
 
   onClick(value: any): void {
-    this.onChange(value);
+    if (this.defaultOption === value) {
+      this.defaultOption = null;
+    } else {
+      this.defaultOption = value;
+    }
+
+    this.onChange(this.defaultOption);
     this.onTouched();
-    this.defaultOption = value;
   }
 }

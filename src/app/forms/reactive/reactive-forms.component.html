@@ -37,7 +37,12 @@
     </span>
   </div>
 
-  <app-list [options]="options" label="My custom control" formControlName="mycontrol"></app-list>
+  <div class="form-group">
+    <app-list [options]="options" label="My custom control" formControlName="mycontrol"></app-list>
+    <span class="error" *ngIf="mycontrol.invalid && mycontrol.touched">
+      <ng-container *ngIf="mycontrol.errors['required']">One option is required</ng-container>
+    </span>
+  </div>
 
   <div formArrayName="languages">
     <h3>Your languages</h3>

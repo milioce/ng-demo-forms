@@ -79,6 +79,10 @@ export class ReactiveFormsComponent implements OnInit {
     return <FormArray>this.form.get('languages');
   }
 
+  get mycontrol(): any {
+    return this.form.get('mycontrol');
+  }
+
   onAddLanguage(lang: string = null) {
     const control = new FormControl(lang, Validators.required);
     (<FormArray>this.form.get('languages')).push(control);
@@ -155,7 +159,7 @@ export class ReactiveFormsComponent implements OnInit {
       country: [this.user.country, Validators.required],
       username: [this.user.username, [Validators.required, this.forbiddenNames.bind(this)], this.existsEmail],
       languages: this.fb.array(this.user.languages),
-      mycontrol: [null]
+      mycontrol: [null, Validators.required]
     });
   }
 
