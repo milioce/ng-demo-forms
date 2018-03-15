@@ -1,0 +1,21 @@
+<form class="col-md-6" novalidate #f="ngForm">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" class="form-control" placeholder="Your username" name="username" ngModel>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" placeholder="Your email" name="email" ngModel>
+    </div>
+
+    <div class="form-group">
+      <label>Country</label>
+      <select name="country" class="form-control" ngMode>
+        <option value="">Select your country</option>
+        <option *ngFor="let country of countries" [value]="country.id">{{ country.label }}</option>
+      </select>
+    </div>
+
+    <button type="submit">Save</button>
+  </form>

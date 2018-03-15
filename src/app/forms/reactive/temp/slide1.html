@@ -1,0 +1,34 @@
+<h1>Reactive form</h1>
+<div class="row">
+  <div class="col-md-6">
+    <form novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div formGroupName="name">
+        <div class="form-group">
+          <label for="firstname">First name</label>
+          <input formControlName="first" id="firstname" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="lastname">Last name</label>
+          <input formControlName="last" id="lastname" type="text" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input formControlName="email" id="email" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <select formControlName="country" id="country" class="form-control">
+          <option *ngFor="let opt of countries" [ngValue]="opt">{{ opt.label }}</option>
+        </select>
+      </div>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</div>
+
+
+<div *ngIf="form.valid && form.touched">
+  <hr>
+  {{ form.value | json }}
+</div>
