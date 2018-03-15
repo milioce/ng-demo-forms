@@ -1,0 +1,15 @@
+<div class="card bg-light mb-3">
+  <h1 class="card-header bg-secondary">switchMap</h1>
+  <div class="card-body">
+    <h4 class="card-title">source$.switchMap(res => $inner).subscribe()</h4>
+    <p class="card-text">
+      Para cada valor emitido el source, lo proyecta a otro observable.
+    </p>
+    <p class="card-text">
+      Para cada valor emitido en $inner, se cancela la emisión de valores del inner anterior
+    </p>
+  </div>
+</div>
+
+<rxjs-card-code title="Ejemplo" [code]="code"
+  (run)="onTest()"></rxjs-card-code>

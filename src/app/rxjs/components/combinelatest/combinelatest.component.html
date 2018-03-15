@@ -1,0 +1,17 @@
+<div class="card bg-light mb-3">
+  <h1 class="card-header bg-secondary">combineLatest</h1>
+  <div class="card-body">
+    <h4 class="card-title">Rx.Observable.combineLatest(...arg).subscribe()</h4>
+    <p class="card-text">
+      Combina el último valor emitido por todos los observables pasados como argumento.
+    </p>
+    <p class="card-text">
+      Cada vez que uno de ellos emite un nuevo valor, se emite el último de cada uno de ellos. <br>
+      No empieza a emitir valores hasta que todos han emitido al menos un valor
+    </p>
+  </div>
+</div>
+
+<button #btn1 class="btn btn-primary">Source 1 ({{ cont1 }})</button>
+<button #btn2 class="btn btn-primary">Source 2 ({{ cont2 }})</button>
+<button #btn3 class="btn btn-primary">Source 3 ({{ cont3 }})</button>
